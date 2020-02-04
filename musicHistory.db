@@ -1,0 +1,85 @@
+SELECT * FROM Song;
+
+SELECT Title, SongId FROM Song;
+
+SELECT Title FROM Song Where ArtistId = 6;
+
+
+SELECT Title, SongLength, ReleaseDate, ArtistId
+FROM Song
+WHERE ArtistId = 8
+OR ArtistId = 3;
+
+INSERT INTO Song
+VALUES (null,"Baby Shark", 689, "09/22/1896", 9, 3, 5);
+
+INSERT INTO Song ( Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+VALUES ("Baby Squid", 899, "01/11/2019", 9, 2, 1);
+
+UPDATE Song 
+SET Title = "Baby Tuna"
+WHERE SongId = 23;
+
+DELETE FROM Song
+WHERE SongId = 23;
+
+SELECT count() as ' # of songs', artist.ArtistName
+FROM Song
+JOIN Artist
+ON song.ArtistId = Artist.ArtistId
+GROUP BY Song.ArtistId
+ORDER BY #ofsongs DESC;
+
+
+SELECT al.title || " by " || ar.artistname
+FROM Album al
+LEFT JOIN Artist ar
+ON al.artistid = ar.artistid;
+
+
+
+
+
+-- Query all of the entries in the Genre table
+SELECT * FROM Genre;
+
+-- Using the INSERT statement, add one of your favorite artists to the Artist table.
+
+INSERT INTO Artist (ArtistName, YearEstablished)
+VALUES("Kevin Gates", "09/16/2004");
+
+-- Using the INSERT statement, add one, or more, albums by your artist to the Album table.
+
+INSERT INTO Album (Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
+VALUES("I Don't Get Tired", "12/14/2014", "7777", "Def Jam", 29, 13);
+
+INSERT INTO Album (Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
+VALUES("Da Cater", "12/16/2004", "17785", "Cash Money Records", 28, 13);
+
+-- Using the INSERT statement, add some songs that are on that album to the Song table.
+
+INSERT INTO Song ( Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+VALUES("BM Jr", "300", "12/16/2004", 13, 28, 24);
+
+INSERT INTO Song ( Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+VALUES("Walkin", "312", "12/16/2004", 13, 28, 24);
+
+INSERT INTO Song ( Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+VALUES("I Miss My Dawgs", "400", "12/16/2004", 13, 28, 24);
+
+INSERT INTO Song ( Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+VALUES("HEATER", "349", "12/16/2004", 13, 28, 24);
+
+
+-- Write a SELECT query that provides the song titles, album title, and artist name for all of the data you just entered in. Use the LEFT JOIN keyword sequence to connect the tables, and the WHERE keyword to filter the results to the album and artist you added.
+
+SELECT a.Title, s.Title, ArtistName
+FROM  Album a AND Artist
+LEFT JOIN Song s
+ON s.AlbumId = a.AlbumId
+WHERE AlbumId = 24;
+
+
+
+SELECT a.Title, s.Title FROM Album a LEFT JOIN Song s ON s.AlbumId = a.AlbumId;
+SELECT a.Title, s.Title FROM Song s LEFT JOIN Album a ON s.AlbumId = a.AlbumId;
